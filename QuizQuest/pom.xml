@@ -40,12 +40,10 @@
     <version>1.1.4</version>
     <configuration>
         <targetClasses>
-            <param>QuizQuest.*</param>
-            <param>QuizQuest.*</param>
+            <param>Kayttaja.*</param>
         </targetClasses>
         <targetTests>
-            <param>QuizQuest.*</param>
-            <param>QuizQuest.*</param>
+            <param>Kayttaja.*</param>
         </targetTests>
     </configuration>
 </plugin>
