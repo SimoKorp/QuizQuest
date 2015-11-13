@@ -41,9 +41,11 @@
     <configuration>
         <targetClasses>
             <param>Kayttaja.*</param>
+            <param>Kysymykset.*</param>
         </targetClasses>
         <targetTests>
             <param>Kayttaja.*</param>
+            <param>Kysymykset.*</param>
         </targetTests>
     </configuration>
 </plugin>

@@ -7,71 +7,103 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
+import Logiikka.Peli;
+import Kysymykset.Kysymys;
+import Kysymykset.KysymysLista;
+import Kayttaja.Seikkailija;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author Simo
  */
 //alkutekijöissä vielä :)
-public class Grafiikka extends JFrame {
-//booleanit
+public class Grafiikka implements Runnable {
 
-    public boolean q1 = true;
-    public boolean q2 = false;
-    public boolean q3 = false;
-    public boolean q4 = false;
-    public boolean q5 = false;
-    public boolean q6 = false;
-    public boolean q7 = false;
-    public boolean q8 = false;
-    public boolean q9 = false;
-    public boolean q10 = false;
+    private Seikkailija seikkailija;
+    private int kysymystenMaara;
+    private String Nimi;
+    private JFrame frame;
+    private JTextArea kysymysLaatikko;
+    private JButton buttonA;
+    private JButton buttonB;
+    private JButton buttonC;
+    private Peli peli;
 
-    boolean gameStarted = false;
-
-    //kymmenen kysymyksen quiz
-    Image dbImage;
-    Graphics dbg;
-
-    Rectangle startGame = new Rectangle(300, 200, 100, 100);
-
-    //konstruktori   
-    public Grafiikka() {
-        setSize(600, 400);
-        setResizable(false);
-        setAlwaysOnTop(true);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setTitle("QuizQuest_v0.001");
-        setBackground(Color.BLACK);
-    }
-
-    //voidit
-    public void startGame() {
-
-    }
-
-    public void StopGame() {
-
-    }
-
-    public void ResumeGame() {
-
+    public Grafiikka(Peli peli) {
+        this.peli = peli;
     }
 
     @Override
-    public void paint(Graphics g) {
-        dbImage = createImage(getWidth(), getHeight());
-        dbg = dbImage.getGraphics();
-        draw(dbg);
-        g.drawImage(dbImage, 0, 0, this);
+    public void run() {
+        frame = new JFrame("QuizQuest");
+        frame.setPreferredSize(new Dimension(1000, 400));
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        luoKomponentit(frame.getContentPane());
+     //   frame.add(new JLabel( new ImageIcon( "~\\Users\\Simo\\Pictures\\grus.png" ))); 
+        frame.pack();
+        frame.setVisible(true);
+        keskitaIkkuna(frame);
+        refresh();
     }
 
-    public void draw(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(startGame.x, startGame.y, startGame.width, startGame.height);
+    private void luoKomponentit(Container container) {   
+        this.kysymysLaatikko = new JTextArea();
+        this.buttonA = new JButton();
+        this.buttonB = new JButton();
+        this.buttonC = new JButton();
+        ActionListener kuuntelija = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String viesti;
+                if (peli.vastaus(((JButton) e.getSource()).getText())) {
+                    peli.getSeikkailija().vastausOikein();
+                    viesti = "RÄTT!";
 
+                } else {
+                    peli.getSeikkailija().vastausVaarin();
+                    viesti = "Försök på nytt!";
+                }
+                JOptionPane.showMessageDialog((JButton) e.getSource(), viesti);
+                refresh();
+            }
+
+        };
+        buttonA.addActionListener(kuuntelija);
+        buttonB.addActionListener(kuuntelija);
+        buttonC.addActionListener(kuuntelija);
+        container.add(kysymysLaatikko);
+        container.add(paneloi(), BorderLayout.SOUTH);
+    }
+
+    private JPanel paneloi() {
+        JPanel panel = new JPanel(new GridLayout(1, 3));
+        panel.add(buttonA);
+        panel.add(buttonB);
+        panel.add(buttonC);
+        return panel;
+    }
+
+    private void refresh() {
+        KysymysLista lista = peli.kysy();
+        kysymysLaatikko.setText(lista.getKysymys1().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+        ArrayList<Kysymys> vaihtoehdot = lista.getKysymykset();
+        buttonA.setText(vaihtoehdot.get(0).getKysymys());
+        buttonB.setText(vaihtoehdot.get(1).getKysymys());
+        buttonC.setText(vaihtoehdot.get(2).getKysymys());
+
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public static void keskitaIkkuna(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.width / 2 - frame.getSize().width / 2));
+        int y = (int) ((dimension.height / 2 - frame.getSize().height / 2));
+        frame.setLocation(x, y);
     }
 
 }

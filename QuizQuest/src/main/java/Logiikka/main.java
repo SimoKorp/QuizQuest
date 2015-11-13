@@ -8,16 +8,17 @@ package Logiikka;
 import java.awt.*;
 import javax.swing.*;
 import Kayttaja.Seikkailija;
+import Kysymykset.Kysymys;
+import GUI.Grafiikka;
+import Logiikka.Peli;
 
 public class main {
 
     public static void main(String[] args) {
 
-        Seikkailija raimo = new Seikkailija("Raimo", "Raivokas");
-        
-        raimo.vastausOikein();
-        int bongot = raimo.getPisteet();
-        System.out.println(bongot);
+        Peli p = new Peli();
+        Grafiikka g  = new Grafiikka(p);
+        SwingUtilities.invokeLater(g);
     }
 
 }
