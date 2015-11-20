@@ -14,6 +14,10 @@ import Logiikka.Peli;
 
 public class main {
 
+    /**
+     * ajaa pelin ja grafiikan
+     * @param args 
+     */
     public static void main(String[] args) {
 
         Peli p = new Peli();

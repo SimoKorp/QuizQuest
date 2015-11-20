@@ -1,6 +1,6 @@
-Aihe: Quiz-tyyppinen tietopeli, jossa oikein vastatessa avautuu tarinaa.
-K‰ytt‰j‰t: Pelaaja
-Kaikkien k‰ytt‰jien toiminnot: Pelin pelaaminen, nappien painelu, tekstin lukeminen mik‰li vastaus oikein
+Aihe: Quiz-tyyppinen tietopeli jeopardy! tyyppisesti toteutettuna. Oikein vastatessaan pelaaja ker‰‰ pisteit‰ ja v‰‰rin vastatessaan menett‰‰ niit‰. Peli p‰‰ttyy kun kaikki kysymykset on kertaalleen kysytty. Loppu pisteiden mukaan pelaaja saa tietyn p‰tk‰n yht‰ suurempaa tarinaa.
 
-Suunniteltuja toimintoja: Grafiikka jossa vastausvaihtoehdoille napit. Oma kentt‰ns‰ tarinalle, joka siis muuttuu aina oikeiden vastauksien eli tason mukana. Highscore systeemi.
+Kaikkien k‰ytt‰jien toiminnot: Pelin pelaaminen, nappien painelu, tekstin lukeminen mik‰li pisteet riitt‰v‰t.
+
+Suunniteltuja toimintoja: Grafiikka jossa vastausvaihtoehdoille napit. Oma kentt‰ns‰ tarinalle, joka siis avautuu lopulta. Highscore systeemi.
 

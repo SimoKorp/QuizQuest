@@ -13,32 +13,55 @@ import Kayttaja.Seikkailija;
  *
  * @author Simo
  */
+
+
 public class Peli {
 
-    private int maxKysymykset;
     private Seikkailija seikkailija;
     private String oikeaVastaus;
     private String vastaus;
+    private KysymysLista kysymykset;
 
+    /**
+     * Konstruktori
+     * luo uuden käyttäjän ja kysymyslistan
+     */
+    
     public Peli() {
-        this.maxKysymykset = 10;
-        this.seikkailija = new Seikkailija("Riitta", "Uhmakas");
-
+        this.seikkailija = new Seikkailija("Käpistelijä", "Pikku");
+        kysymykset = new KysymysLista();
     }
 
+    /**
+     * 
+     * @return  ajaa sekoita metodin ja valitsee oikean vastauksen
+     * kysyttävään kysymykseen. Sitten palauttaa kysymyslistan
+     * 
+     */
+    
     public KysymysLista kysy() {
-
-        KysymysLista kysymykset = new KysymysLista();
+        kysymykset.sekoita();
+       
         this.oikeaVastaus = kysymykset.getKysymys1().getKysymys();
         return kysymykset;
 
     }
 
+    /**
+     * 
+     * @param vastaus vastaus kysymykseen
+     * @return  palauttaa onko vastaus oikea vai ei
+     */
+    
     public boolean vastaus(String vastaus) {
 
         return this.oikeaVastaus.equals(vastaus);
     }
 
+    /**
+     * 
+     * @return palauttaa käyttäjän
+     */
     public Seikkailija getSeikkailija() {
         return this.seikkailija;
     }

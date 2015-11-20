@@ -1,3 +1,5 @@
+package Kayttaja;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,11 +18,11 @@ import Kayttaja.Seikkailija;
  *
  * @author Simo
  */
-public class SeikkailijaTesti {
+public class SeikkailijaTest {
 
     private Seikkailija kayttaja;
 
-    public SeikkailijaTesti() {
+    public SeikkailijaTest() {
 
     }
 
@@ -40,6 +42,10 @@ public class SeikkailijaTesti {
     @After
     public void tearDown() {
     }
+    
+    /**
+     * testaa luettiinko nimi adjektiiveineen oikein
+     */
 
     @Test
     public void luettiinkoNimiOikein() {
@@ -48,12 +54,20 @@ public class SeikkailijaTesti {
         assertEquals(nimi, sankari.getNimi());
     }
 
+    /**
+     * Testaa onko kayttajalla oikea määrä pisteet
+     */
+    
     @Test
     public void onkoPisteetOikein() {
         this.kayttaja.vastausOikein();
         int pisteet = this.kayttaja.getPisteet();
         assertEquals(pisteet, 100);
     }
+    
+    /**
+     * Testaa muuttuiko nimi pisteiden mukaan oikein
+     */
 
     @Test
     public void muuttuikoNimiOikein() {
@@ -63,6 +77,10 @@ public class SeikkailijaTesti {
         assertEquals(nimi, kayttaja.getNimi());
     }
     
+    /**
+     * Testaa muuttuiko nimi pisteiden mukaan oikein
+     */
+    
     @Test
     public void muuttuikoNimiOikein2() {
         kayttaja.asetaPisteet(500);
@@ -70,6 +88,10 @@ public class SeikkailijaTesti {
         String nimi = kayttaja.getNimi();
         assertEquals(nimi, kayttaja.getNimi());
     }
+    
+    /**
+     * Testaa muuttuiko nimi pisteiden mukaan oikein
+     */
     
     @Test
     public void muuttuikoNimiOikein3() {

@@ -18,7 +18,7 @@ import Kysymykset.Kysymys;
  * @author Simo
  */
 public class KysymysLista {
-    
+
     private Map<Integer, Kysymys> kysymykset;
     private int randomNumeroYksi;
     private int randomNumeroKaksi;
@@ -27,7 +27,14 @@ public class KysymysLista {
     private Kysymys kysymysKaksi;
     private Kysymys kysymysKolme;
     private ArrayList<Kysymys> valmiitKysymykset;
-    
+    private int arvo;
+
+    /**
+     * Konstruktori
+     * Luo listan valmiista kysymyksistä ja hajautustaulun kysymyksistä ja vastauksista
+     * ajaa metodit lisaaKysymykset, KysymyksenArpoja ja valmiitKysymykset
+     * 
+     */
     
     
     public KysymysLista() {
@@ -40,10 +47,13 @@ public class KysymysLista {
         KysymyksenArpoja();
         valmiitKysymykset();
     }
+
     
-    
+    /**
+     * lisää kysymykset hajautustauluun
+     */
     public void lisaaKysymykset() {
-        
+
         this.kysymykset.put(1, new Kysymys("Kuinka paljon on 3+4?", "7"));
         this.kysymykset.put(2, new Kysymys("Kuinka korkea on eifel-torni?", "300"));
         this.kysymykset.put(3, new Kysymys("Miten monta sormea minulla on?", "19"));
@@ -65,22 +75,27 @@ public class KysymysLista {
         this.kysymykset.put(19, new Kysymys("Miten korkea on Mount Everest?", "8848"));
         this.kysymykset.put(20, new Kysymys("Kuinka pitkäksi valkohai voi kasvaa?", "4"));
     }
+
+   
+    /**
+     * Arpoo hajautustaulusta kolme kysymystä jotka eivät ole samoja toistensa kanssa
+     * 
+     */
     
     
-    //Kysymyksen arpoja on vielä pahasti kesken eikä toimi vielä oikein
     public void KysymyksenArpoja() {
         Random rand = new Random();
-        this.randomNumeroYksi = rand.nextInt(this.kysymykset.size())+1;
+        this.randomNumeroYksi = rand.nextInt(this.kysymykset.size()) + 1;
         while (true) {
-        int randomNumero = rand.nextInt(this.kysymykset.size()+1);
-        if (randomNumero != this.randomNumeroYksi) {
-            this.randomNumeroKaksi = randomNumero;
-            break;
+            int randomNumero = rand.nextInt(this.kysymykset.size()) + 1;
+            if (randomNumero != this.randomNumeroYksi) {
+                this.randomNumeroKaksi = randomNumero;
+                break;
+            }
         }
-    }
         while (true) {
-            int randomNumero = rand.nextInt(this.kysymykset.size())+1;
-            if (randomNumero != this.randomNumeroYksi || randomNumero != this.randomNumeroKaksi) {
+            int randomNumero = rand.nextInt(this.kysymykset.size()) + 1;
+            if (randomNumero != this.randomNumeroYksi && randomNumero != this.randomNumeroKaksi) {
                 this.randomNumeroKolme = randomNumero;
                 break;
             }
@@ -89,42 +104,64 @@ public class KysymysLista {
         this.kysymysKaksi = this.kysymykset.get(this.randomNumeroKaksi);
         this.kysymysKolme = this.kysymykset.get(this.randomNumeroKolme);
     }
+
+    /**
+     * tekee valmiit kysymykset nappeihin asetettavaksi ja sekoittaa ne
+     */
     
+    public void valmiitKysymykset() {
+        this.valmiitKysymykset.clear();
+        this.valmiitKysymykset.add(kysymysYksi);
+        this.valmiitKysymykset.add(kysymysKaksi);
+        this.valmiitKysymykset.add(kysymysKolme);
+        Collections.shuffle(valmiitKysymykset);
+    }
     
-        public void valmiitKysymykset() {
-            this.valmiitKysymykset.clear();
-            this.valmiitKysymykset.add(kysymysYksi);
-            this.valmiitKysymykset.add(kysymysKaksi);
-            this.valmiitKysymykset.add(kysymysKolme);
-            Collections.shuffle(valmiitKysymykset);
-        }
-        
-        public Kysymys getKysymys1() {
-            return this.kysymysYksi;
-        }
-        
-        public Kysymys getKysymys2() {
-            return this.kysymysKaksi;
-        }
-        
-        public Kysymys getKysymys3() {
-            return this.kysymysKolme;
-        }
-        
-        public int getRandomNumeroYksi() {
-            return randomNumeroYksi;
-        }
-        
-        public int getRandomNumeroKaksi() {
-            return randomNumeroKaksi;
-        }
-        
-        public int getRandomNumeroKolme() {
-            return randomNumeroKolme;
-        }
-        
-        public ArrayList getKysymykset() {
-            return this.valmiitKysymykset;
-        }
+    /**
+     * palauttaa valmiiden kysymysten kysymyksen numero 1
+     * @return  palauttaa kysymyksen
+     */
+
+    public Kysymys getKysymys1() {
+        return this.kysymysYksi;
+    }
+
+    /**
+     * sekoittaa kysymykset
+     */
+    public void sekoita() {
+        KysymyksenArpoja();
+        valmiitKysymykset();
+    }
+
     
+    /**
+     * 
+     * @return palauttaa valmiit kysymykset
+     */
+    public ArrayList getKysymykset() {
+        return this.valmiitKysymykset;
+    }
+    
+    /**
+     * Katsoo mikäli haluttu kysymys on hajautustaulussa ja palauttaa sen indeksin
+     * 
+     * @param kysymykset hajautustaulu kysymyksistä
+     * @param k kysymys
+     * @return palauttaa kysymyksen k indeksin
+     */
+
+    public Integer getAvain(KysymysLista kysymykset, Kysymys k) {
+        if (this.kysymykset.containsValue(k)) {
+            for (Map.Entry<Integer, Kysymys> i : this.kysymykset.entrySet()) {
+                if (i.getValue().equals(k)) {
+                    this.arvo = i.getKey();
+                    //ArrayList <Integer> Avainlista= new ArrayList<>(kysymykset.keySet());
+                }
+            }
+
+        }
+        return arvo;
+    }
+
 }

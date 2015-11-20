@@ -1,3 +1,5 @@
+package Kayttaja;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,11 +18,11 @@ import Kayttaja.Pisteytys;
  *
  * @author Simo
  */
-public class PisteytysTesti {
+public class PisteytysTest {
 
     private Pisteytys pisteet;
 
-    public PisteytysTesti() {
+    public PisteytysTest() {
     }
 
     @BeforeClass
@@ -40,11 +42,18 @@ public class PisteytysTesti {
     public void tearDown() {
     }
 
+    /**
+     * testaa alkaako pisteidenlasku nollasta
+     */
     @Test
     public void alkavatkoPisteetNollasta() {
         assertEquals(this.pisteet.getPisteet(), 0);
     }
-
+    
+    /**
+     * Tarkistaa onko pisteet halutulla hetkellä oikein
+     */
+    
     @Test
     public void onkoPisteetOikein() {
         for (int i = 0; i < 4; i++) {
@@ -52,7 +61,11 @@ public class PisteytysTesti {
         }
         assertEquals(this.pisteet.getPisteet(), 400);
     }
-
+    
+    /**
+     * Tarkistaa onko pisteet halutulla hetkellä oikein
+     */
+    
     @Test
     public void onkoPisteetOikein2() {
         for (int i = 0; i < 4; i++) {
@@ -60,7 +73,11 @@ public class PisteytysTesti {
         }
         assertEquals(this.pisteet.getPisteet(), -100);
     }
-
+    
+    /**
+     * Tarkistaa onko pisteet halutulla hetkellä oikein
+     */
+    
     @Test
     public void onkoPisteetOikein3() {
         for (int i = 0; i < 4; i++) {
@@ -69,6 +86,10 @@ public class PisteytysTesti {
         }
         assertEquals(this.pisteet.getPisteet(), 300);
     }
+    
+    /**
+     * Tarkistaa nollautuuko pisteet oikein
+     */
 
     @Test
     public void nollautuukoPisteet() {

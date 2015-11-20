@@ -1,3 +1,5 @@
+package Kysymykset;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,11 +18,11 @@ import Kysymykset.Kysymys;
  *
  * @author Simo
  */
-public class KysymysTesti {
+public class KysymysTest {
     
     private Kysymys kysymys;
     
-    public KysymysTesti() {
+    public KysymysTest() {
         this.kysymys = new Kysymys("1+2", "3");
     }
     
@@ -41,7 +43,9 @@ public class KysymysTesti {
     }
     
     
-    
+    /**
+     * Testaa onko kysymys luettu oikein
+     */
     
     @Test
     public void OnkoKysymysOikein(){
@@ -49,15 +53,27 @@ public class KysymysTesti {
         assertEquals(oikeakyssari,kysymys.getKysymys());
     }
     
+    /**
+     * Testaa onko vastaus luettu oikein
+     */
+    
     @Test
     public void OnkoVastausOikein(){
         String oikeavastaus = "3";
         assertEquals(oikeavastaus,kysymys.getVastaus());
     }
+    
+    /**
+     * Testaa toimiiko kysymyksen kysytty-statuksen muutos ja lukeminen oikein
+     */
+    
+    @Test
+    public void ToimiikoKysytty() {
+        kysymys.Kysytty();
+        assertEquals(true, kysymys.onkoKysytty());
+        
+        
+    }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+ 
 }
