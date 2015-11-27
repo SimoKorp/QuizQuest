@@ -55,8 +55,9 @@ public class Pisteytys {
         this.pisteet = 0;
     }
     
-    /**
-    Mahdolisuus asettaa haluamasi pisteet esim huijaustilanteessa
+   /**
+    * mahdollisuus asettaa pisteet esim huijatessa
+    * @param pojot parametrina pisteet
     */
     
     public void asetaPisteet(int pojot) {

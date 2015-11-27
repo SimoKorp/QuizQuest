@@ -125,6 +125,14 @@ public class KysymysLista {
     public Kysymys getKysymys1() {
         return this.kysymysYksi;
     }
+    
+    public Kysymys getKysymys2() {
+        return this.kysymysKaksi;
+    }
+    
+    public Kysymys getKysymys3() {
+        return this.kysymysKolme;
+    }
 
     /**
      * sekoittaa kysymykset
@@ -132,6 +140,10 @@ public class KysymysLista {
     public void sekoita() {
         KysymyksenArpoja();
         valmiitKysymykset();
+    }
+    
+    public void poista() {
+        
     }
 
     

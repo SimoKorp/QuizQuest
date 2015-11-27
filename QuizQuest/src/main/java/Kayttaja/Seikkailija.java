@@ -71,15 +71,17 @@ public class Seikkailija {
     }
     
     /**
-    Pisteytysluokasta hyödynnetään metodia asetaPisteet
-    */
+     * asettaa käyttäjälle halutut pisteet
+     * @param pojot parametrina asetettavat pisteet
+     */
     public void asetaPisteet(int pojot) {
         this.pojot.asetaPisteet(pojot);
     }
     
     /**
-    Asetetaan käyttäjälle tämän pisteiden mukaan nimi
-    */
+     * Asettaa käyttäjälle uuden nimen tämän pisteiden mukaan
+     * @param pisteet parametrina käyttäjän pisteet
+     */
     
     public void VaihdaEeppinenNimi(int pisteet) {
         if(pisteet <= 2000) {
@@ -93,6 +95,11 @@ public class Seikkailija {
             this.nimi = this.nimi + " Who More to Learn Still Has";
         }
     }
+    
+    /**
+     * Asettaa haukkuvamman nimen käyttäjälle huonojen pisteiden johdosta
+     * @param pisteet parametrina käyttäjän pisteet
+     */
     
     public void VaihdaParjaavaNimi(int pisteet) {
         if (pisteet <300) {

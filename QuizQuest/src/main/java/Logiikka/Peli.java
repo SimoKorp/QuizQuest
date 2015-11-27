@@ -13,8 +13,6 @@ import Kayttaja.Seikkailija;
  *
  * @author Simo
  */
-
-
 public class Peli {
 
     private Seikkailija seikkailija;
@@ -23,43 +21,45 @@ public class Peli {
     private KysymysLista kysymykset;
 
     /**
-     * Konstruktori
-     * luo uuden käyttäjän ja kysymyslistan
+     * Konstruktori luo uuden käyttäjän ja kysymyslistan
      */
-    
     public Peli() {
         this.seikkailija = new Seikkailija("Käpistelijä", "Pikku");
         kysymykset = new KysymysLista();
     }
 
     /**
-     * 
-     * @return  ajaa sekoita metodin ja valitsee oikean vastauksen
-     * kysyttävään kysymykseen. Sitten palauttaa kysymyslistan
-     * 
+     *
+     * @return ajaa sekoita metodin ja valitsee oikean vastauksen kysyttävään
+     * kysymykseen. Sitten palauttaa kysymyslistan
+     *
      */
-    
     public KysymysLista kysy() {
         kysymykset.sekoita();
-       
-        this.oikeaVastaus = kysymykset.getKysymys1().getKysymys();
+
+        if (kysymykset.getKysymys1().onkoKysytty()) {
+            this.oikeaVastaus = kysymykset.getKysymys2().getKysymys();
+        } else if (kysymykset.getKysymys2().onkoKysytty()) {
+            this.oikeaVastaus = kysymykset.getKysymys3().getKysymys();
+        } else {
+            this.oikeaVastaus = kysymykset.getKysymys1().getKysymys();
+        }
         return kysymykset;
 
     }
 
     /**
-     * 
+     *
      * @param vastaus vastaus kysymykseen
-     * @return  palauttaa onko vastaus oikea vai ei
+     * @return palauttaa onko vastaus oikea vai ei
      */
-    
     public boolean vastaus(String vastaus) {
 
         return this.oikeaVastaus.equals(vastaus);
     }
 
     /**
-     * 
+     *
      * @return palauttaa käyttäjän
      */
     public Seikkailija getSeikkailija() {

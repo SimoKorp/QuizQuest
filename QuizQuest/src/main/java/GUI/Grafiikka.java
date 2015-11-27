@@ -5,6 +5,10 @@
  */
 package GUI;
 
+/**
+ *
+ * @author Simo
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
@@ -30,10 +34,12 @@ public class Grafiikka implements Runnable {
     private JButton buttonB;
     private JButton buttonC;
     private Peli peli;
-/**
- * Konstruktori
- * @param peli parametrina peli
- */
+
+    /**
+     * Konstruktori
+     *
+     * @param peli parametrina peli
+     */
     public Grafiikka(Peli peli) {
         this.peli = peli;
     }
@@ -59,6 +65,7 @@ public class Grafiikka implements Runnable {
         this.buttonA = new JButton();
         this.buttonB = new JButton();
         this.buttonC = new JButton();
+
         ActionListener kuuntelija = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String viesti;
@@ -91,22 +98,27 @@ public class Grafiikka implements Runnable {
     }
 
     private void refresh() {
-        KysymysLista lista = peli.kysy();
-        
-        
-        
-        kysymysLaatikko.setText(lista.getKysymys1().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
-        
-        lista.getKysymys1().Kysytty();
-        
+        KysymysLista lista = peli.kysy();  //Yritin poistaa toistuvia kysymyksiä, mutta tästä pitää tehdä looppi
+        if (!lista.getKysymys1().onkoKysytty()) {
+            kysymysLaatikko.setText(lista.getKysymys1().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+            lista.getKysymys1().Kysytty();
+        } else if (!lista.getKysymys2().onkoKysytty()) {
+            kysymysLaatikko.setText(lista.getKysymys2().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+            lista.getKysymys2().Kysytty();
+        } else {
+            kysymysLaatikko.setText(lista.getKysymys3().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+            lista.getKysymys3().Kysytty();
+        }
+
         ArrayList<Kysymys> vaihtoehdot = lista.getKysymykset();
         buttonA.setText(vaihtoehdot.get(0).getKysymys());
         buttonB.setText(vaihtoehdot.get(1).getKysymys());
         buttonC.setText(vaihtoehdot.get(2).getKysymys());
 
     }
+
     /**
-     * 
+     *
      * @return palauttaa JFramen
      */
     public JFrame getFrame() {
@@ -115,6 +127,7 @@ public class Grafiikka implements Runnable {
 
     /**
      * Keskittää ikkunan suhteutettuna päätelaitteen kokoon
+     *
      * @param frame parametrina ikkuna
      */
     public static void keskitaIkkuna(Window frame) {

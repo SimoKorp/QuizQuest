@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package Logiikka;
+/**
+ *
+ * @author Simo
+ */
 
 import java.awt.*;
 import javax.swing.*;
@@ -11,6 +15,11 @@ import Kayttaja.Seikkailija;
 import Kysymykset.Kysymys;
 import GUI.Grafiikka;
 import Logiikka.Peli;
+
+/**
+ * 
+ * Pääohjelma
+ */
 
 public class main {
 
