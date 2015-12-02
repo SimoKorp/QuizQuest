@@ -25,6 +25,7 @@ public class KysymysListaTest {
 
     private Map<Integer, Kysymys> kysymykset;
     private Kysymys kysymys;
+    private ArrayList<Kysymys> kysytyt;
     private int randomNumeroYksi;
     private int randomNumeroKaksi;
     private int randomNumeroKolme;
@@ -46,6 +47,7 @@ public class KysymysListaTest {
 
     @Before
     public void setUp() {
+        kysytyt = new ArrayList<>();
         this.kysymys = new Kysymys("1+2", "3");
         this.kysymykset = new HashMap();
 
@@ -64,11 +66,10 @@ public class KysymysListaTest {
         String toString = kysymykset.toString();
         assertEquals("{2=1+2 - 3}", toString);
     }
-    
+
     /**
      * Testaa onko arvottavat vastausvaihtoehdot keskenään erilaiset
      */
-
     @Test
     public void ovatkoVastausVaihtoehdotErilaiset() {
         this.kysymykset.put(1, new Kysymys("Kuinka paljon on 3+4?", "7"));
@@ -100,11 +101,10 @@ public class KysymysListaTest {
         assertEquals(false, this.kysymysKaksi.getKysymys().equals(this.kysymysKolme.getKysymys()));
         assertEquals(false, this.kysymysYksi.getKysymys().equals(this.kysymysKaksi.getKysymys()));
     }
-    
+
     /**
      * Testaa toimiiko halutun kysymyksen avaimenhaku oikein
      */
-
     @Test
     public void toimiikoAvaimenHaku() {
         kysymykset.put(5, this.kysymys);
@@ -117,5 +117,23 @@ public class KysymysListaTest {
             }
         }
         assertEquals(5, this.arvo);
+    }
+
+    @Test
+    public void toimiikoKysyttyihinLisays() {
+        kysytyt.add(kysymys);
+        kysytyt.add(kysymys);
+
+        assertEquals(2, kysytyt.size());
+    }
+
+    @Test
+    public void onkoListaKysymyksiaKysytty() {
+        kysymykset.put(1, kysymys);
+        kysymykset.put(2, kysymys);
+        kysytyt.add(kysymys);
+
+        assertEquals(true, kysymykset.size()/2 == kysytyt.size());
+
     }
 }

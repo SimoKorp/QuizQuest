@@ -26,19 +26,19 @@ public class KysymysLista {
     private Kysymys kysymysYksi;
     private Kysymys kysymysKaksi;
     private Kysymys kysymysKolme;
+    private ArrayList<Kysymys> kysytyt;
     private ArrayList<Kysymys> valmiitKysymykset;
     private int arvo;
 
     /**
-     * Konstruktori
-     * Luo listan valmiista kysymyksistä ja hajautustaulun kysymyksistä ja vastauksista
-     * ajaa metodit lisaaKysymykset, KysymyksenArpoja ja valmiitKysymykset
-     * 
+     * Konstruktori Luo listan valmiista kysymyksistä ja hajautustaulun
+     * kysymyksistä ja vastauksista ajaa metodit lisaaKysymykset,
+     * KysymyksenArpoja ja valmiitKysymykset
+     *
      */
-    
-    
     public KysymysLista() {
-        this.valmiitKysymykset = new ArrayList<Kysymys>();
+        this.valmiitKysymykset = new ArrayList<>();
+        this.kysytyt = new ArrayList<>();
         this.kysymykset = new HashMap();
         this.kysymysYksi = null;
         this.kysymysKaksi = null;
@@ -48,7 +48,6 @@ public class KysymysLista {
         valmiitKysymykset();
     }
 
-    
     /**
      * lisää kysymykset hajautustauluun
      */
@@ -76,13 +75,11 @@ public class KysymysLista {
         this.kysymykset.put(20, new Kysymys("Kuinka pitkäksi valkohai voi kasvaa?", "4"));
     }
 
-   
     /**
-     * Arpoo hajautustaulusta kolme kysymystä jotka eivät ole samoja toistensa kanssa
-     * 
+     * Arpoo hajautustaulusta kolme kysymystä jotka eivät ole samoja toistensa
+     * kanssa
+     *
      */
-    
-    
     public void KysymyksenArpoja() {
         Random rand = new Random();
         this.randomNumeroYksi = rand.nextInt(this.kysymykset.size()) + 1;
@@ -108,7 +105,6 @@ public class KysymysLista {
     /**
      * tekee valmiit kysymykset nappeihin asetettavaksi ja sekoittaa ne
      */
-    
     public void valmiitKysymykset() {
         this.valmiitKysymykset.clear();
         this.valmiitKysymykset.add(kysymysYksi);
@@ -116,22 +112,42 @@ public class KysymysLista {
         this.valmiitKysymykset.add(kysymysKolme);
         Collections.shuffle(valmiitKysymykset);
     }
-    
+
     /**
      * palauttaa valmiiden kysymysten kysymyksen numero 1
-     * @return  palauttaa kysymyksen
+     *
+     * @return palauttaa kysymyksen
      */
-
     public Kysymys getKysymys1() {
-        return this.kysymysYksi;
+        return this.kysymysYksi;     
     }
     
+    /**
+     * palauttaa valmiiden kysymysten kysymyksen numero 2
+     * @return palauttaa kysymyksen
+     */
+
     public Kysymys getKysymys2() {
         return this.kysymysKaksi;
     }
     
+    /**
+     * palauttaa valmiiden kysymysten kysymyksen numero 3
+     * @return palauttaa kysymyksen
+     */
+
     public Kysymys getKysymys3() {
         return this.kysymysKolme;
+    }
+
+    
+    /**
+     * tarkistaa onko puolet kysymystä kysytty.
+     * @return palauttaa true jos 20 on kysytty.
+     */
+
+    public boolean onkoKysytytTaynna() {
+        return (this.kysymykset.size()/2 == this.kysytyt.size());
     }
 
     /**
@@ -141,28 +157,31 @@ public class KysymysLista {
         KysymyksenArpoja();
         valmiitKysymykset();
     }
-    
-    public void poista() {
-        
+
+    /**
+     * lisää kysymyksen kysytyt listaan
+     * @param k on lisättävä kysymys
+     */
+    public void lisaaKysyttyihin(Kysymys k) {
+        this.kysytyt.add(k);
     }
 
-    
     /**
-     * 
+     *
      * @return palauttaa valmiit kysymykset
      */
     public ArrayList getKysymykset() {
         return this.valmiitKysymykset;
     }
-    
+
     /**
-     * Katsoo mikäli haluttu kysymys on hajautustaulussa ja palauttaa sen indeksin
-     * 
+     * Katsoo mikäli haluttu kysymys on hajautustaulussa ja palauttaa sen
+     * indeksin
+     *
      * @param kysymykset hajautustaulu kysymyksistä
      * @param k kysymys
      * @return palauttaa kysymyksen k indeksin
      */
-
     public Integer getAvain(KysymysLista kysymykset, Kysymys k) {
         if (this.kysymykset.containsValue(k)) {
             for (Map.Entry<Integer, Kysymys> i : this.kysymykset.entrySet()) {

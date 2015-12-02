@@ -53,7 +53,6 @@ public class Grafiikka implements Runnable {
         frame.setPreferredSize(new Dimension(1000, 400));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
-        //   frame.add(new JLabel( new ImageIcon( "~\\Users\\Simo\\Pictures\\grus.png" ))); 
         frame.pack();
         frame.setVisible(true);
         keskitaIkkuna(frame);
@@ -98,23 +97,34 @@ public class Grafiikka implements Runnable {
     }
 
     private void refresh() {
-        KysymysLista lista = peli.kysy();  //Yritin poistaa toistuvia kysymyksiä, mutta tästä pitää tehdä looppi
-        if (!lista.getKysymys1().onkoKysytty()) {
-            kysymysLaatikko.setText(lista.getKysymys1().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
-            lista.getKysymys1().Kysytty();
-        } else if (!lista.getKysymys2().onkoKysytty()) {
-            kysymysLaatikko.setText(lista.getKysymys2().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
-            lista.getKysymys2().Kysytty();
+        KysymysLista lista = peli.kysy();
+
+        if (!lista.onkoKysytytTaynna()) {  //Peli loppuu vihdoin! mutta lopetusilmoituksen teko on vielä kesken
+                                            
+            if (!lista.getKysymys1().onkoKysytty()) {
+                kysymysLaatikko.setText(lista.getKysymys1().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+                lista.getKysymys1().Kysytty();
+                lista.lisaaKysyttyihin(lista.getKysymys1());
+            } else if (!lista.getKysymys2().onkoKysytty()) {
+                kysymysLaatikko.setText(lista.getKysymys2().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+                lista.getKysymys2().Kysytty();
+                lista.lisaaKysyttyihin(lista.getKysymys2());
+            } else {
+                kysymysLaatikko.setText(lista.getKysymys3().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
+                lista.getKysymys3().Kysytty();
+                lista.lisaaKysyttyihin(lista.getKysymys3());
+            }
+
+            ArrayList<Kysymys> vaihtoehdot = lista.getKysymykset();
+            buttonA.setText(vaihtoehdot.get(0).getKysymys());
+            buttonB.setText(vaihtoehdot.get(1).getKysymys());
+            buttonC.setText(vaihtoehdot.get(2).getKysymys());
         } else {
-            kysymysLaatikko.setText(lista.getKysymys3().getVastaus() + "\n" + "\n" + peli.getSeikkailija().toString());
-            lista.getKysymys3().Kysytty();
+            kysymysLaatikko.setText(peli.getSeikkailija().toString() + "\n " + "Peli on päättynyt");
+            buttonA.setText("HIENO");
+            buttonB.setText("HOMMA");
+            buttonC.setText("HERMANNI");
         }
-
-        ArrayList<Kysymys> vaihtoehdot = lista.getKysymykset();
-        buttonA.setText(vaihtoehdot.get(0).getKysymys());
-        buttonB.setText(vaihtoehdot.get(1).getKysymys());
-        buttonC.setText(vaihtoehdot.get(2).getKysymys());
-
     }
 
     /**

@@ -37,12 +37,12 @@ public class Peli {
     public KysymysLista kysy() {
         kysymykset.sekoita();
 
-        if (kysymykset.getKysymys1().onkoKysytty()) {
-            this.oikeaVastaus = kysymykset.getKysymys2().getKysymys();
-        } else if (kysymykset.getKysymys2().onkoKysytty()) {
-            this.oikeaVastaus = kysymykset.getKysymys3().getKysymys();
-        } else {
+        if (!kysymykset.getKysymys1().onkoKysytty()) {
             this.oikeaVastaus = kysymykset.getKysymys1().getKysymys();
+        } else if(!kysymykset.getKysymys2().onkoKysytty()) {
+            this.oikeaVastaus = kysymykset.getKysymys2().getKysymys();
+        } else {
+            this.oikeaVastaus = kysymykset.getKysymys3().getKysymys();
         }
         return kysymykset;
 

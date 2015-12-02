@@ -53,6 +53,7 @@ public class Kysymys {
 
     public void Kysytty() {
         this.kysytty = true;
+        
     }
     
     /**
