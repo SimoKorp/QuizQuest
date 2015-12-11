@@ -84,15 +84,15 @@ public class Seikkailija {
      */
     
     public void VaihdaEeppinenNimi(int pisteet) {
-        if(pisteet <= 2000) {
-            this.nimi = this.nimi + " The Golden Gryphon of Greatness!";
+        if(pisteet <= 2000 && pisteet > 1800) {
+            this.nimi = this.nimi + " A.K.A Heisenberg";
         }
-        else if (pisteet <= 1800) {
-            this.nimi = this.nimi + " The Student Who Became the Magister";
+        else if (pisteet <= 1800 && pisteet > 1200) {
+            this.nimi = this.nimi + " The One Who Knocks!";
         }
         
-        else if (pisteet > 300 && pisteet < 1800) {
-            this.nimi = this.nimi + " Who More to Learn Still Has";
+        else if (pisteet > 300 && pisteet <= 1200) {
+            this.nimi = this.nimi + " The Blowfish";
         }
     }
     
@@ -102,8 +102,8 @@ public class Seikkailija {
      */
     
     public void VaihdaParjaavaNimi(int pisteet) {
-        if (pisteet <300) {
-            this.nimi = this.nimi + " The One Who Mom Kicked Out";
+        if (pisteet < 300) {
+            this.nimi = this.nimi + " Who better call Saul";
         }
     }
     

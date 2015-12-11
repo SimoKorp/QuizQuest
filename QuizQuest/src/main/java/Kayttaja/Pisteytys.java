@@ -36,7 +36,7 @@ public class Pisteytys {
     */
     
     public void vastausOikein() {
-        this.pisteet += 100;
+        this.pisteet += 200;
     }
     
     /**
