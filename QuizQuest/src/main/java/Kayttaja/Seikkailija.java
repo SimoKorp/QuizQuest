@@ -113,7 +113,7 @@ public class Seikkailija {
      */
     @Override
     public String toString() {
-        return this.nimi + " Pisteillä: " + getPisteet();
+        return this.nimi + " \nPisteesi: " + getPisteet();
     }
     
     

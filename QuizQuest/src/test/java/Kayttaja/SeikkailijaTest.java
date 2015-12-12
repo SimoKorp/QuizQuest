@@ -62,7 +62,7 @@ public class SeikkailijaTest {
     public void onkoPisteetOikein() {
         this.kayttaja.vastausOikein();
         int pisteet = this.kayttaja.getPisteet();
-        assertEquals(pisteet, 100);
+        assertEquals(pisteet, 200);
     }
     
     /**

@@ -66,30 +66,73 @@ public class Peli {
     public Seikkailija getSeikkailija() {
         return this.seikkailija;
     }
+    
+    /**
+     * Metodi tulostaa osan runoa pelaajan pisteiden mukaan
+     * @param pisteet parametrinä pelaajan pisteet
+     * @return 
+     */
 
     public String tarinoi(int pisteet) {
         if (pisteet <= 2000 && pisteet > 1800) {
-            tarina = ("Nothing beside remains: round the decay\n"
-                    + "Of that colossal wreck, boundless and bare,\n"
-                    + "The lone and level sands stretch far away.\n");
-        } else if (pisteet <= 1800 && pisteet > 1600) {
-            tarina = ("And on the pedestal these words appear:\n"
-                    + "\"My name is Ozymandias, king of kings:\n"
-                    + "Look on my works, ye Mighty, and despair!\"");
-        } else if (pisteet <= 1600 && pisteet > 1200) {
-            tarina = ("Tell that its sculptor well those passions read\n"
-                    + "Which yet survive, stamp'd on these lifeless things,\n"
-                    + "The hand that mock'd them and the heart that fed.");
-        } else if (pisteet <= 1200 && pisteet > 900) {
-            tarina = ("Near them on the sand,\n"
-                    + "Half sunk, a shatter'd visage lies, whose frown\n"
-                    + "And wrinkled lip and sneer of cold command");
-        } else if (pisteet < 900) {
             tarina = ("I met a traveller from an antique land\n"
                     + "Who said: Two vast and trunkless legs of stone\n"
-                    + "Stand in the desert.");
+                    + "Stand in the desert.\n"
+                    + "Near them on the sand,\n"
+                    + "Half sunk, a shatter'd visage lies, whose frown\n"
+                    + "And wrinkled lip and sneer of cold command.\n\n"
+                    + "Tell that its sculptor well those passions read\n"
+                    + "Which yet survive, stamp'd on these lifeless things,\n"
+                    + "The hand that mock'd them and the heart that fed.\n\n"
+                    + "And on the pedestal these words appear:\n"
+                    + "My name is Ozymandias, king of kings:\n"
+                    + "Look on my works, ye Mighty, and despair!\n\n"
+                    + "Nothing beside remains: round the decay\n"
+                    + "Of that colossal wreck, boundless and bare,\n"
+                    + "The lone and level sands stretch far away.\n\n"
+                    + "OLET PÄIHITTÄNYT PELIN! ONNITTELUT!");
+        } else if (pisteet <= 1800 && pisteet > 1600) {
+            tarina = ("I met a traveller from an antique land\n"
+                    + "Who said: Two vast and trunkless legs of stone\n"
+                    + "Stand in the desert.\n"
+                    + "Near them on the sand,\n"
+                    + "Half sunk, a shatter'd visage lies, whose frown\n"
+                    + "And wrinkled lip and sneer of cold command.\n\n"
+                    + "Tell that its sculptor well those passions read\n"
+                    + "Which yet survive, stamp'd on these lifeless things,\n"
+                    + "The hand that mock'd them and the heart that fed.\n\n"
+                    + "And on the pedestal these words appear:\n"
+                    + "My name is Ozymandias, king of kings:\n"
+                    + "Look on my works, ye Mighty, and despair!\n\n"
+                    + "AVAA LOPUT SUUREMMILLA PISTEILLÄ!");
+        } else if (pisteet <= 1600 && pisteet > 1200) {
+            tarina = ("I met a traveller from an antique land\n"
+                    + "Who said: Two vast and trunkless legs of stone\n"
+                    + "Stand in the desert.\n"
+                    + "Near them on the sand,\n"
+                    + "Half sunk, a shatter'd visage lies, whose frown\n"
+                    + "And wrinkled lip and sneer of cold command.\n\n"
+                    + "Tell that its sculptor well those passions read\n"
+                    + "Which yet survive, stamp'd on these lifeless things,\n"
+                    + "The hand that mock'd them and the heart that fed.\n\n"
+                    + "AVAA LOPUT SUUREMMILLA PISTEILLÄ!");
+        } else if (pisteet <= 1200 && pisteet > 900) {
+            tarina = ("I met a traveller from an antique land\n"
+                    + "Who said: Two vast and trunkless legs of stone\n"
+                    + "Stand in the desert.\n\n"
+                    + "Near them on the sand,\n"
+                    + "Half sunk, a shatter'd visage lies, whose frown\n"
+                    + "And wrinkled lip and sneer of cold command.\n\n"
+                    + "AVAA LOPUT SUUREMMILLA PISTEILLÄ!");
+        } else if (pisteet < 900 && pisteet > 500) {
+            tarina = ("I met a traveller from an antique land\n"
+                    + "Who said: Two vast and trunkless legs of stone\n"
+                    + "Stand in the desert.\n\n"
+                    + "AVAA LOPUT SUUREMMILLA PISTEILLÄ!");
         } else {
-            tarina = ("(505) 503-4455\n" "Saul Goodman\n" "Attorney at Law")
+            tarina = ("(505) 503-4455\n"
+                    + "Saul Goodman\n"
+                    + "Attorney At Law");
         }
         return tarina;
     }

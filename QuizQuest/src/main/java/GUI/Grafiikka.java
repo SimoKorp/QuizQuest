@@ -50,7 +50,7 @@ public class Grafiikka implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("QuizQuest");
-        frame.setPreferredSize(new Dimension(1200, 300));
+        frame.setPreferredSize(new Dimension(1200, 600));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
         frame.pack();
@@ -122,10 +122,10 @@ public class Grafiikka implements Runnable {
         } else {
             peli.getSeikkailija().VaihdaEeppinenNimi(peli.getSeikkailija().getPisteet());
             peli.getSeikkailija().VaihdaParjaavaNimi(peli.getSeikkailija().getPisteet());
-            kysymysLaatikko.setText(peli.getSeikkailija().toString() + "\n \n " + peli.tarinoi(peli.getSeikkailija().getPisteet()));
-            buttonA.setText("SELVITÄ");
-            buttonB.setText("LOPUT");
-            buttonC.setText("TARINASTA");
+            kysymysLaatikko.setText(peli.getSeikkailija().toString() + "\n \n" + peli.tarinoi(peli.getSeikkailija().getPisteet()));
+            buttonA.setText("PELI");
+            buttonB.setText("ON");
+            buttonC.setText("PÄÄTTYNYT");
         }
     }
 

@@ -59,7 +59,7 @@ public class PisteytysTest {
         for (int i = 0; i < 4; i++) {
             this.pisteet.vastausOikein();
         }
-        assertEquals(this.pisteet.getPisteet(), 400);
+        assertEquals(this.pisteet.getPisteet(), 800);
     }
     
     /**
@@ -84,7 +84,7 @@ public class PisteytysTest {
             this.pisteet.vastausOikein();
             this.pisteet.vastausVaarin();
         }
-        assertEquals(this.pisteet.getPisteet(), 300);
+        assertEquals(this.pisteet.getPisteet(), 700);
     }
     
     /**
